@@ -84,12 +84,12 @@ def get_pie_chart(entered_site):
         )
         return fig
     else:
-        single_site = all_sites.loc[
+        single_site = all_sites[
             all_sites['Launch Site'] == entered_site
         ]
         fig = px.pie(
             single_site, 
-            values='class', 
+            names='class', 
             title='Successful Launches for {entered_site} Site'.format(
                 entered_site=entered_site
             )
@@ -105,7 +105,7 @@ def get_pie_chart(entered_site):
     Input(component_id='payload-slider', component_property='value')
 )
 def get_scatter_chart(entered_site, payload_mass):
-    all_sites = spacex_df.loc[
+    all_sites = spacex_df[
         (spacex_df['Payload Mass (kg)'] >= payload_mass[0]) & (spacex_df['Payload Mass (kg)'] <= payload_mass[1])
     ]
     if entered_site == 'ALL':
@@ -117,8 +117,8 @@ def get_scatter_chart(entered_site, payload_mass):
             title='Successful Launches for each SpaceX Site and Payload Mass')
         return fig
     else:
-        single_site = all_sites.loc[
-            all_sites['Launch Site']==entered_site
+        single_site = all_sites[
+            all_sites['Launch Site'] == entered_site
         ]
         fig = px.scatter(
             single_site,
